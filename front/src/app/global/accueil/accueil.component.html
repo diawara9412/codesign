@@ -1,0 +1,160 @@
+<div class="content-wrapper">
+    <!-- Content -->
+  
+    <div class="container-xxl flex-grow-1 container-p-y">
+     
+      <div class="container">
+        
+        <!-- end row -->
+    
+        <div class="row">
+            
+           
+                <div class="card">
+                    <div class="card-header">
+                        <div class="col-md-3">
+                            <button   data-bs-toggle="modal" data-bs-target="#modalCenter" type="button" class="btn mb-2 mb-md-0 btn-secondary btn-block btn-round"><span>Ajouter</span> 
+                                <div class="icon icon-round d-flex align-items-center justify-content-center">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                   
+                    <div class="card-body">
+                        <div class="table-responsive project-list">
+                            <table class="table project-table table-centered table-nowrap">
+                                <thead>
+                                    <tr>
+                                        <!-- <th scope="col">#</th> -->
+                                        <th scope="col">Titre</th>
+                                       
+                                        <th scope="col">Statut</th>
+                                        
+                                        <th scope="col" style="text-align: center;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+    
+                                    <tr  *ngFor="let item of listTache  | paginate: { itemsPerPage: 5, currentPage: p }">
+                                        <!-- <th scope="row">9</th> -->
+                                        <td>{{item.titre}}</td>
+                                        
+                                        <td>
+                                            <span *ngIf="item.statut=='Faire'" class="text-blue font-12" style="color: blue; font-weight: bold;"><i class="mdi mdi-checkbox-blank-circle mr-1"></i> A Faire</span>
+                                            <span *ngIf="item.statut=='Terminer'" class="text-success font-12" style=" font-weight: bold;"><i class="mdi mdi-checkbox-blank-circle mr-1"></i> Terminer</span>
+
+                                        </td>
+                                      
+    
+                                        <td>
+                                            <div class="action">
+                                                <!-- <a   [routerLink]="'/global/detail/' + item.id" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-eye" aria-hidden="true"></i></a> -->
+                                    <a  data-bs-toggle="modal" data-bs-target="#modalUpdate" (click)="tacheBy(item.id)" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
+                                                <a (click)="deleteTache(item.id)" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa fa-remove h5 m-0" style="color: red;"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- end project-list -->
+    
+                        <div class="pt-3">
+                          <pagination-controls style="text-align: center;" (pageChange)="p = $event"></pagination-controls> 
+
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+        <!-- end row -->
+    </div>
+    </div>
+    <!-- / Content -->
+  
+    <!-- Footer -->
+  
+    <!-- / Footer -->
+  
+    <div class="content-backdrop fade"></div>
+  </div>
+
+  
+  <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <form [formGroup]="formgroup" (ngSubmit)="ajouterTache(formgroup)">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCenterTitle">Ajout Tache</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+           
+          
+          
+            <div class="col mb-0">
+              <label  class="form-label">Titre</label>
+              <input type="text" formControlName="titre" class="form-control" />
+            </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Fermer
+          </button>
+          <button type="submit"  class="btn btn-primary">Envoyer</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modalUpdate" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <form [formGroup]="formgroupUpdate">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCenterTitle">Modifier Tache</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+           
+          
+          
+          <div class="row g-2">
+            <div class="col mb-0">
+              <label  class="form-label">Titre</label>
+              <input type="text" id="dobWithTitle" formControlName="titre" *ngIf="tacheById"  [(ngModel)]="tacheById.titre"  class="form-control" />
+            </div>
+            <div class="col mb-0">
+              <label for="defaultSelect" class="form-label">Statut</label>
+              <select formControlName="statut" *ngIf="tacheById"  [(ngModel)]="tacheById.statut"  class="form-select">
+                <option value="">Selectionné genre</option>
+                <option value="Faire">A faire</option>
+                <option value="Terminer">Terminer</option>
+                <!-- <option value="3">Three</option> -->
+              </select>
+            </div>
+            
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Fermer
+          </button>
+          <button  (click)="updateTache()" class="btn btn-primary">Envoyer</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>

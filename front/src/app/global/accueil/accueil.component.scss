@@ -1,0 +1,46 @@
+body{
+    background:#f3f3f3;
+    margin-top:20px;
+    color: #616f80;
+}
+.card {
+    border: none;
+    margin-bottom: 24px;
+    -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
+    box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
+}
+
+.avatar-xs {
+    height: 2.3rem;
+    width: 2.3rem;
+}
+.action {
+    display: flex;
+    justify-content: space-around;
+}
+.card {
+    display: flex; /* Utiliser le modèle de boîte flex pour les enfants */
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Légère ombre */
+}
+
+.card-body {
+    padding: 15px; /* Espacement interne */
+    flex-grow: 1; /* Pour s'agrandir et occuper tout l'espace disponible */
+}
+
+.form-control {
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 5px 5px 5px 5px; /* Coins arrondis, coin supérieur gauche et inférieur gauche */
+    flex-grow: 1; /* Pour occuper tout l'espace disponible */
+}
+
+.input-group-append button {
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 5px 5px 5px 5px; /* Coins arrondis, coin supérieur droit et inférieur droit */
+    flex-grow: 1; /* Pour occuper tout l'espace disponible */
+}
+.btn .icon {
+    margin-left: 5px; /* Ajoute une marge à gauche de l'icône */
+}
