@@ -1,5 +1,5 @@
 Projet Todo List
-Ce projet est une application de liste de tâches permettant aux utilisateurs de gérer leurs tâches à faire. Il utilise Spring Boot pour le backend, Angular pour la partie front-end web, et Flutter pour la partie mobile.
+Ce projet est une application de liste de tâches permettant aux utilisateurs de gérer leurs tâches à faire. Il utilise Spring Boot pour le backend, Angular et react js pour la partie front-end web, et Flutter pour la partie mobile.
 
 Technologies utilisées
 Spring Boot: J'ai choisi Spring Boot pour le backend car c'est un framework Java robuste et bien documenté qui me permet de créer rapidement des API RESTful. Étant donné que je me sens à l'aise avec Java, Spring Boot était un choix naturel pour moi.
